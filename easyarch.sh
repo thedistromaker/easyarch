@@ -24,6 +24,7 @@ mkdir /mnt/boot
 mount /dev/nvme0n1p1 /mnt/boot
 echo "Installing base system."
 pacstrap -K /mnt base base-devel linux linux-firmware xorg-xinit xorg-server xorg xdg-utils firefox iwd sddm plasma-meta grub efibootmgr dhcpcd nano vim wget curl git sudo
+genfstab -U >> /mnt/etc/fstab
 echo "%wheel	ALL=(ALL:ALL) ALL" >> /mnt/etc/sudoers
 echo "Chrooting into system. Run: 'git clone https://github.com/thedistromaker/easyarch.git' again and run ./easyarch2.sh to continue"
 arch-chroot /mnt
