@@ -20,8 +20,8 @@ exit
 ;;
 esac
 mount /dev/nvme0n1p2 /mnt
-mkdir /mnt/boot
-mount /dev/nvme0n1p1 /mnt/boot
+mkdir -p /mnt/boot/efi
+mount /dev/nvme0n1p1 /mnt/boot/efi
 echo "Installing base system."
 pacstrap -K /mnt base base-devel linux linux-firmware xorg-xinit xorg-server xorg xdg-utils firefox iwd sddm plasma-meta grub efibootmgr dhcpcd nano vim wget curl git sudo
 genfstab -U >> /mnt/etc/fstab
