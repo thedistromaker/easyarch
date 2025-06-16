@@ -1,11 +1,18 @@
 #!/bin/bash
 echo "Stage 2. Continuing..."
 systemctl enable sddm iwd dhcpcd
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install
 grub-mkconfig -o /boot/grub/grub.cfg
 read -p "Base system configured. Enter username:" usernamesel
 useradd $usernamesel
 usermod -aG wheel $usernamesel
+echo "Find %wheel ALL... but NOT THE LINE WITH NOPASSWD. Uncomment the line, Esc, :wq!"
+sleep 3
+vim /etc/sudoers
+echo "Set your user's password"
+passwd $usernamesel
+mkdir -p /home/$usernamesel
+chown -R $usernamesel:$usernamesel /home/$usernamesel
 echo ""
 echo "System set up. Exiting..."
 exit 0
