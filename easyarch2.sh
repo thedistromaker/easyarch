@@ -6,9 +6,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 read -p "Base system configured. Enter username:" usernamesel
 useradd $usernamesel
 usermod -aG wheel $usernamesel
-echo "Find %wheel ALL... but NOT THE LINE WITH NOPASSWD. Uncomment the line, Esc, :wq!"
-sleep 3
-vim /etc/sudoers
 echo "Set your user's password"
 passwd $usernamesel
 mkdir -p /home/$usernamesel
